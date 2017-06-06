@@ -1,0 +1,26 @@
+
+version: "3"
+
+services:
+  
+  terminal-jt:
+    image: "openjdk:8-alpine"
+    volumes:
+      - /Users/IT/code/vehicle-terminal-server-jt/target:/app
+      - ./service-start.sh:/app/entrypoint.sh
+    entrypoint: /app/entrypoint.sh
+    environment:
+      - BASEDIR=/app
+      - CLASSPATH=/app/vehicle-terminal-server-jt-1.0-SNAPSHOT.jar
+      - MAIN_CLASS=com.suyun.vehicle.jtserver.server.TerminalServer
+
+  terminal-gb:
+    image: "openjdk:8-alpine"
+    volumes:
+      - /Users/IT/code/vehicle-terminal-server-gb/target:/app
+      - ./service-start.sh:/app/entrypoint.sh
+    entrypoint: /app/entrypoint.sh
+    environment:
+      - BASEDIR=/app
+      - CLASSPATH=/app/vehicle-terminal-server-gb-1.0-SNAPSHOT.jar
+      - MAIN_CLASS=com.suyun.vehicle.gbserver.Launcher

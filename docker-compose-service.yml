@@ -1,0 +1,37 @@
+
+version: "3"
+
+services:
+  
+  pacman:
+    image: "openjdk:8-alpine"
+    volumes:
+      - /Users/IT/code/vehicle-pacman/target:/app
+      - ./service-start.sh:/app/entrypoint.sh
+    entrypoint: /app/entrypoint.sh
+    environment:
+      - BASEDIR=/app
+      - CLASSPATH=/app/vehicle-pacman-1.0-SNAPSHOT.jar
+      - MAIN_CLASS=com.suyun.vehicle.app.PacmanApp
+
+  alarm:
+    image: "openjdk:8-alpine"
+    volumes:
+      - /Users/IT/code/vehicle-alarm/target:/app
+      - ./service-start.sh:/app/entrypoint.sh
+    entrypoint: /app/entrypoint.sh
+    environment:
+      - BASEDIR=/app
+      - CLASSPATH=/app/vehicle-alarm-1.0-SNAPSHOT.jar
+      - MAIN_CLASS=com.suyun.vehicle.alarm.app.AlarmApp
+
+  stream-processor:
+    image: "openjdk:8-alpine"
+    volumes:
+      - /Users/IT/code/vehicle-stream-processor/target:/app
+      - ./service-start.sh:/app/entrypoint.sh
+    entrypoint: /app/entrypoint.sh
+    environment:
+      - BASEDIR=/app
+      - CLASSPATH=/app/vehicle-stream-processor-1.0-SNAPSHOT.jar
+      - MAIN_CLASS=com.suyun.vehicle.app.StreamProcessorApp
